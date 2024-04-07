@@ -55,7 +55,7 @@ def recognize_song(y, H, F, s_flag, k):
     elif s_flag == 'majority vote':
         winner, score = get_winner(d=json_correspondence, I=I, D=D, sorted_array=sorted_arr)
         now = datetime.datetime.now().time()
-        out_str = f'Time: {now} | Pred: {winner} | Score: {score:.3}'
+        out_str = f'Time: {now} | SONG NAME: {winner}'
 
     query_time = 1000 * (time.perf_counter() - tic)
     total = query_time + inference_time
