@@ -93,7 +93,7 @@ if __name__ == '__main__':
 
     device = 'cuda' if torch.cuda.is_available() and args['device'] == 'cuda' else 'cpu'
     model = Neural_Fingerprinter().to(device)
-    model.load_state_dict(torch.load(args['weights']))
+    model.load_state_dict(torch.load(args['weights'], map_location="cpu"))
 
     F, H, FMB = args['SR'], args['Hop size'], args['FMB']
 
