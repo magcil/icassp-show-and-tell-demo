@@ -49,7 +49,7 @@ def recognize_song(y, H, F, s_flag, k):
         m_end, s_end = divmod(offset + dur, 60)
 
         now = datetime.datetime.now().time()
-        out_str = f'Time: {now} | Pred: {winner} | Score: {score:.3f} | Offset: {offset} | ' +\
+        out_str = f'Time: {now} | SONG NAME: {winner} | Offset: {offset} | ' +\
             f'Query time span: {int(m_start)}:{int(s_start):02d}-{int(m_end)}:{int(s_end):02d}'
 
     elif s_flag == 'majority vote':
