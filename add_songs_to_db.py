@@ -77,7 +77,7 @@ if __name__ == '__main__':
                     f'--output {temp_path}.wav ' +\
                     f'--postprocessor-args "-ar {F} -ac 1" ' + url + " --quiet"
             os.system(command)
-            time.sleep(4)
+            time.sleep(5)
 
             try:
                 file_dset = FileDataset(file=temp_path + '.wav', sr=F, hop_size=H)

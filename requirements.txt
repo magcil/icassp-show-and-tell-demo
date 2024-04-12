@@ -6,5 +6,5 @@ sounddevice
 faiss-cpu
 pyaudio
 einops
-yt-dlp==2023.3.4
+yt-dlp==2024.4.9
 tqdm
