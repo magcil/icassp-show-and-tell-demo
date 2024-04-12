@@ -1,5 +1,6 @@
 from collections import Counter
 from typing import Dict
+import os
 
 import numpy as np
 import librosa
@@ -25,6 +26,26 @@ def query_sequence_search(D, I):
         idxs = np.where((c <= I_flat) & (I_flat <= c + len(D)))[0]
         scores.append(np.sum(D_flat[idxs]))
     return candidates[np.argmax(scores)], round(max(scores), 4)
+
+def crawl_directory(directory: str, extension: str = None) -> list:
+    """Crawling data directory
+    Args:
+        directory (str) : The directory to crawl
+    Returns:
+        tree (list)     : A list with all the filepaths
+    """
+    tree = []
+    subdirs = [folder[0] for folder in os.walk(directory)]
+
+    for subdir in subdirs:
+        files = next(os.walk(subdir))[2]
+        for _file in files:
+            if extension is not None:
+                if _file.endswith(extension):
+                    tree.append(os.path.join(subdir, _file))
+            else:
+                tree.append(os.path.join(subdir, _file))
+    return tree
 
 
 def search_index(idx: int, sorted_arr: np.ndarray):
@@ -53,3 +74,4 @@ def get_winner(d: Dict, I: np.ndarray, D: np.ndarray, sorted_array: np.ndarray):
     D_shape = D.shape[0] * D.shape[1]
 
     return winner, (1 / D_shape) * D_flat_inverse[idxs].sum()
+
